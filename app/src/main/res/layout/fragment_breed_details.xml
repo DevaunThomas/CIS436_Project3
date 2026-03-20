@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ScrollView allows vertical scrolling if content is long -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Main container for all content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Image of the dog -->
+        <ImageView
+            android:id="@+id/dogImageView"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="Dog image"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Breed name -->
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name: Dog Breed"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Temperament -->
+        <TextView
+            android:id="@+id/temperamentTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temperament: Friendly, Active, Loyal"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Origin -->
+        <TextView
+            android:id="@+id/originTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Origin: Germany"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Life span -->
+        <TextView
+            android:id="@+id/lifeSpanTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Life Span: 10 - 12 years"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Bred for -->
+        <TextView
+            android:id="@+id/bredForTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bred For: Herding"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+    </LinearLayout>
+</ScrollView>
