@@ -1,6 +1,7 @@
 package com.example.cis436_project3.ui.selector
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.cis436_project3.R
 import com.example.cis436_project3.viewmodel.DogViewModel
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
 
 // This fragment displays the Spinner (dropdown) for selecting a dog breed
 class BreedSelectorFragment : Fragment() {
@@ -80,7 +84,50 @@ class BreedSelectorFragment : Fragment() {
             }
         }
 
+        // Load breeds from the Dog API when the fragment opens
+        fetchBreeds()
+
         // Return the view to display
         return view
+    }
+
+    // This function calls the Dog API and loads breed names into the Spinner
+    private fun fetchBreeds() {
+        val url = "https://api.thedogapi.com/v1/breeds"
+        val queue = Volley.newRequestQueue(requireContext())
+
+        val request = object : JsonArrayRequest(
+            Request.Method.GET,
+            url,
+            null,
+            { response ->
+                val breedList = ArrayList<String>()
+
+                // Add default option at the top of the Spinner
+                breedList.add("Select a dog breed")
+
+                for (i in 0 until response.length()) {
+                    val dogObject = response.getJSONObject(i)
+                    val breedName = dogObject.getString("name")
+                    breedList.add(breedName)
+                }
+
+                viewModel.setBreeds(breedList)
+            },
+            { error ->
+                Log.e("DOG_API", "Error fetching breeds: ${error.message}")
+            }
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+
+                // Send API key in request header
+                headers["x-api-key"] = "live_L6GRNZqgu6Ycix5U7GSxFbnptYTZFZoOSego7jSU9NXpwkKnLSo3XiBpGnrtYp5Y"
+
+                return headers
+            }
+        }
+
+        queue.add(request)
     }
 }

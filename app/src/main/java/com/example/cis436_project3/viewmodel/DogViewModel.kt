@@ -27,15 +27,16 @@ class DogViewModel : ViewModel() {
     // Initialize with sample data
     init {
         _breeds.value = listOf(
-            "Select a dog breed",
-            "Labrador Retriever",
-            "Beagle",
-            "Poodle",
-            "German Shepherd"
+            "Select a dog breed"
         )
 
         // No breed selected when app first opens
         _selectedBreed.value = ""
+    }
+
+    // Update the breed list from the API
+    fun setBreeds(breedList: List<String>) {
+        _breeds.value = breedList
     }
 
     // Update the selected breed
