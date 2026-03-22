@@ -10,69 +10,64 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.cis436_project3.R
+import com.example.cis436_project3.model.DogBreed
 import com.example.cis436_project3.viewmodel.DogViewModel
 
-// This fragment displays the Spinner (dropdown) for selecting a dog breed
+// This fragment displays the Spinner for selecting a dog breed
 class BreedSelectorFragment : Fragment() {
 
-    // Spinner UI element
     private lateinit var breedSpinner: Spinner
-
-    // Shared ViewModel (used by both fragments)
     private val viewModel: DogViewModel by activityViewModels()
 
-    // Flag to prevent automatic selection when app starts
+    // Stores full breed objects locally
+    private var breeds: List<DogBreed> = emptyList()
+
+    // Prevent automatic first selection
     private var isFirstSelection = true
 
-    // This function creates the UI for the fragment
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        // Load the layout XML
         val view = inflater.inflate(R.layout.fragment_breed_selector, container, false)
 
-        // Connect Spinner from XML
         breedSpinner = view.findViewById(R.id.breedSpinner)
 
-        // Observe breed list from ViewModel
-        viewModel.breeds.observe(viewLifecycleOwner) { breedList ->
+        // Observe full breed list from ViewModel
+        viewModel.breedList.observe(viewLifecycleOwner) { breedList ->
+            breeds = breedList
 
-            // Create adapter to connect data to Spinner
+            val spinnerItems = mutableListOf("Select a dog breed")
+            spinnerItems.addAll(breedList.map { it.name })
+
             val adapter = ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_spinner_item,
-                breedList
+                spinnerItems
             )
-
-            // Set dropdown style
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-            // Attach adapter to Spinner
             breedSpinner.adapter = adapter
         }
 
         // Handle user selection
         breedSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
 
-                // Ignore the first automatic call when app starts
+                // Ignore first automatic trigger
                 if (isFirstSelection) {
                     isFirstSelection = false
                     return
                 }
 
-                // Get selected breed
-                val selected = parent.getItemAtPosition(position).toString()
-
-                // Ignore the default option
-                if (position != 0) {
-                    // Update ViewModel with selected breed
-                    viewModel.selectBreed(selected)
+                // Ignore default item
+                if (position == 0) {
+                    return
                 }
+
+                // Position - 1 because Spinner has default item first
+                val selectedBreed = breeds[position - 1]
+                viewModel.selectBreed(selectedBreed)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -80,7 +75,6 @@ class BreedSelectorFragment : Fragment() {
             }
         }
 
-        // Return the view to display
         return view
     }
 }

@@ -1,45 +1,48 @@
 package com.example.cis436_project3.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.cis436_project3.data.DogApiService
+import com.example.cis436_project3.model.DogBreed
 
-// NOTE FOR TEAM:
-// This ViewModel currently uses sample data.
-// Replace this with API data from Dog API in the next phase.
-// Keep the same LiveData structure.
+// This ViewModel stores dog breed data for the UI
+class DogViewModel(application: Application) : AndroidViewModel(application) {
 
-// ViewModel stores UI data and survives screen rotation
-class DogViewModel : ViewModel() {
+    // API service used to fetch breed data
+    private val dogApiService = DogApiService(application)
 
-    // Private mutable list of dog breeds
-    private val _breeds = MutableLiveData<List<String>>()
+    // Full list of breeds
+    private val _breedList = MutableLiveData<List<DogBreed>>()
+    val breedList: LiveData<List<DogBreed>> = _breedList
 
-    // Public read-only list for fragments to observe
-    val breeds: LiveData<List<String>> = _breeds
+    // Selected breed object
+    private val _selectedBreed = MutableLiveData<DogBreed?>()
+    val selectedBreed: LiveData<DogBreed?> = _selectedBreed
 
-    // Private mutable selected breed
-    private val _selectedBreed = MutableLiveData<String>()
-
-    // Public read-only selected breed
-    val selectedBreed: LiveData<String> = _selectedBreed
-
-    // Initialize with sample data
     init {
-        _breeds.value = listOf(
-            "Select a dog breed",
-            "Labrador Retriever",
-            "Beagle",
-            "Poodle",
-            "German Shepherd"
-        )
+        // No breed selected at first
+        _selectedBreed.value = null
 
-        // No breed selected when app first opens
-        _selectedBreed.value = ""
+        // Load real breed data
+        loadBreeds()
     }
 
-    // Update the selected breed
-    fun selectBreed(breed: String) {
+    // Load breed list from API
+    private fun loadBreeds() {
+        dogApiService.fetchBreeds(
+            onSuccess = { breeds ->
+                _breedList.postValue(breeds)
+            },
+            onError = {
+                _breedList.postValue(emptyList())
+            }
+        )
+    }
+
+    // Store selected breed object
+    fun selectBreed(breed: DogBreed) {
         _selectedBreed.value = breed
     }
 }
