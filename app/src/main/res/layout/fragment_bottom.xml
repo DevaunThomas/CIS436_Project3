@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@color/cream_bg">
+
+    <!-- The paw image in the center -->
+    <ImageView
+        android:id="@+id/pawIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:alpha="0.6"
+        android:contentDescription="Paw Icon"
+        android:src="@drawable/ic_paw"
+        app:layout_constraintBottom_toTopOf="@+id/groupText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Text to the left of the paw -->
+    <TextView
+        android:id="@+id/cis436Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CIS 436"
+        android:textColor="@color/dark_brown"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pawIcon"
+        app:layout_constraintEnd_toStartOf="@+id/pawIcon"
+        app:layout_constraintTop_toTopOf="@+id/pawIcon" />
+
+    <!-- Text to the right of the paw -->
+    <TextView
+        android:id="@+id/project3Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Project 3"
+        android:textColor="@color/dark_brown"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pawIcon"
+        app:layout_constraintStart_toEndOf="@+id/pawIcon"
+        app:layout_constraintTop_toTopOf="@+id/pawIcon" />
+
+    <!-- Text below the paw -->
+    <TextView
+        android:id="@+id/groupText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Group 2"
+        android:textColor="@color/dark_brown"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pawIcon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

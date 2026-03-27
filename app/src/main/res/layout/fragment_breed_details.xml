@@ -4,7 +4,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <!-- Main container for all content -->
     <LinearLayout
@@ -14,26 +15,34 @@
         android:padding="16dp">
 
         <!-- Image of the dog -->
-
-        <!-- Breed name -->
-
         <ImageView
             android:id="@+id/dogImageView"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="240dp"
+            android:layout_marginBottom="24dp"
             android:contentDescription="Dog image"
             android:scaleType="fitCenter"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/dog"
+            android:background="@color/cream_bg"
+            android:padding="8dp" />
 
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/divider_brown"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Breed name -->
         <TextView
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:text="Name: Dog Breed"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_brown" />
 
         <!-- Temperament -->
         <TextView
@@ -42,7 +51,8 @@
             android:layout_height="wrap_content"
             android:text="Temperament: Friendly, Active, Loyal"
             android:textSize="16sp"
-            android:layout_marginBottom="8dp" />
+            android:textColor="@color/dark_brown"
+            android:layout_marginBottom="12dp" />
 
         <!-- Origin -->
         <TextView
@@ -51,7 +61,8 @@
             android:layout_height="wrap_content"
             android:text="Origin: Germany"
             android:textSize="16sp"
-            android:layout_marginBottom="8dp" />
+            android:textColor="@color/dark_brown"
+            android:layout_marginBottom="12dp" />
 
         <!-- Life span -->
         <TextView
@@ -60,7 +71,8 @@
             android:layout_height="wrap_content"
             android:text="Life Span: 10 - 12 years"
             android:textSize="16sp"
-            android:layout_marginBottom="8dp" />
+            android:textColor="@color/dark_brown"
+            android:layout_marginBottom="12dp" />
 
         <!-- Bred for -->
         <TextView
@@ -69,7 +81,8 @@
             android:layout_height="wrap_content"
             android:text="Bred For: Herding"
             android:textSize="16sp"
-            android:layout_marginBottom="8dp" />
+            android:textColor="@color/dark_brown"
+            android:layout_marginBottom="16dp" />
 
     </LinearLayout>
 </ScrollView>

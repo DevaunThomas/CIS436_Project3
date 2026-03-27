@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/cream_bg"
     tools:context=".MainActivity">
 
     <!-- Top fragment (Spinner) -->
@@ -15,13 +16,19 @@
         android:layout_height="wrap_content"
         android:name="com.example.cis436_project3.ui.selector.BreedSelectorFragment" />
 
-    <!-- Bottom fragment (details + image) -->
-
+    <!-- Middle fragment (details + image) -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/bottomFragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:name="com.example.cis436_project3.ui.details.BreedDetailsFragment" />
+
+    <!-- New Bottom Fragment with group info and paw -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/newBottomFragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.example.cis436_project3.ui.bottom.BottomFragment" />
 
 </LinearLayout>

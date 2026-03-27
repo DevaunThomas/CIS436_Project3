@@ -65,7 +65,7 @@ class BreedDetailsFragment : Fragment() {
                 if (breed.imageUrl.isNotEmpty()) {
                     loadImageFromUrl(breed.imageUrl)
                 } else {
-                    dogImageView.setImageResource(R.mipmap.ic_launcher)
+                    dogImageView.setImageResource(R.drawable.dog)
                 }
             } else {
                 nameTextView.text = "Name: -"
@@ -73,7 +73,7 @@ class BreedDetailsFragment : Fragment() {
                 originTextView.text = "Origin: -"
                 lifeSpanTextView.text = "Life Span: -"
                 bredForTextView.text = "Bred For: -"
-                dogImageView.setImageResource(R.mipmap.ic_launcher)
+                dogImageView.setImageResource(R.drawable.dog)
             }
         }
 
@@ -92,7 +92,7 @@ class BreedDetailsFragment : Fragment() {
                 }
             } catch (e: Exception) {
                 activity?.runOnUiThread {
-                    dogImageView.setImageResource(R.mipmap.ic_launcher)
+                    dogImageView.setImageResource(R.drawable.dog)
                 }
             }
         }

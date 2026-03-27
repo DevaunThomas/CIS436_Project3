@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Root layout for the top fragment -->
+<!-- Root layout for the top fragment with enhanced styling -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/cream_bg">
 
     <!-- Title text -->
     <TextView
@@ -13,15 +14,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Choose a Dog Breed"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="8dp" />
+        android:textColor="@color/dark_brown"
+        android:layout_marginBottom="16dp" />
 
-    <!-- Spinner dropdown for selecting breed -->
+    <!-- Spinner with light brown background, dark brown arrow, and persistent colors -->
     <Spinner
         android:id="@+id/breedSpinner"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:background="@drawable/spinner_bg"
+        android:popupBackground="@color/light_brown"
+        android:paddingEnd="40dp"
+        android:stateListAnimator="@null" />
 
 </LinearLayout>
